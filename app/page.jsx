@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import Image from "next/image";
 import { BsLaptopFill, BsSmartwatch } from "react-icons/bs";
 import { GiSofa, GiWrappedSweet } from "react-icons/gi";
@@ -12,15 +12,15 @@ import {
 import { IoGameController } from "react-icons/io5";
 import { v4 } from "uuid";
 import Link from "next/link";
-import LaptopMacRoundedIcon from "@mui/icons-material/LaptopMacRounded";
-import WatchTwoToneIcon from "@mui/icons-material/WatchTwoTone";
-import ChairIcon from "@mui/icons-material/Chair";
-import CakeIcon from "@mui/icons-material/Cake";
-import PhoneIphoneOutlinedIcon from "@mui/icons-material/PhoneIphoneOutlined";
-import CheckroomIcon from "@mui/icons-material/Checkroom";
-import DirectionsBikeOutlinedIcon from "@mui/icons-material/DirectionsBikeOutlined";
-import HeadsetRoundedIcon from "@mui/icons-material/HeadsetRounded";
-import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
+// import LaptopMacRoundedIcon from "@mui/icons-material/LaptopMacRounded";
+// import WatchTwoToneIcon from "@mui/icons-material/WatchTwoTone";
+// import ChairIcon from "@mui/icons-material/Chair";
+// import CakeIcon from "@mui/icons-material/Cake";
+// import PhoneIphoneOutlinedIcon from "@mui/icons-material/PhoneIphoneOutlined";
+// import CheckroomIcon from "@mui/icons-material/Checkroom";
+// import DirectionsBikeOutlinedIcon from "@mui/icons-material/DirectionsBikeOutlined";
+// import HeadsetRoundedIcon from "@mui/icons-material/HeadsetRounded";
+// import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
 import Carasole from "./components/Carasole";
 
 
@@ -32,45 +32,84 @@ const getProducts = async() => {
 
 export default async function Page() {
   const products = await getProducts();
-  let componets = [
+  // let componets = [
+  //   {
+  //     icon: <LaptopMacRoundedIcon key={v4()} />,
+  //     category: "laptop",
+  //   },
+  //   {
+  //     icon: <ChairIcon key={v4()} />,
+  //     category: "sofa",
+  //   },
+  //   {
+  //     icon: <PhoneIphoneOutlinedIcon key={v4()} />,
+  //     category: "phone",
+  //   },
+  //   {
+  //     icon: <CheckroomIcon key={v4()} />,
+  //     category: "tshirt",
+  //   },
+  //   {
+  //     icon: <DirectionsBikeOutlinedIcon key={v4()} />,
+  //     category: "cycle",
+  //   },
+  //   {
+  //     icon: <HeadsetRoundedIcon key={v4()} />,
+  //     category: "headphones",
+  //   },
+  //   {
+  //     icon: <WatchTwoToneIcon key={v4()} />,
+  //     category: "watch",
+  //   },
+  //   {
+  //     icon: <CakeIcon key={v4()} />,
+  //     category: "sweet",
+  //   },
+  //   {
+  //     icon: <SportsEsportsRoundedIcon key={v4()} />,
+  //     category: "game",
+  //   },
+  // ];
+
+    let componets = [
     {
-      icon: <LaptopMacRoundedIcon key={v4()} />,
+      icon: <BsLaptopFill key={v4()} />,
       category: "laptop",
     },
     {
-      icon: <ChairIcon key={v4()} />,
+      icon: <GiSofa key={v4()} />,
       category: "sofa",
     },
     {
-      icon: <PhoneIphoneOutlinedIcon key={v4()} />,
+      icon: <AiOutlineMobile key={v4()} />,
       category: "phone",
     },
     {
-      icon: <CheckroomIcon key={v4()} />,
+      icon: <FaTshirt key={v4()} />,
       category: "tshirt",
     },
     {
-      icon: <DirectionsBikeOutlinedIcon key={v4()} />,
+      icon: <FaBicycle key={v4()} />,
       category: "cycle",
     },
     {
-      icon: <HeadsetRoundedIcon key={v4()} />,
+      icon: <FaHeadphonesAlt key={v4()} />,
       category: "headphones",
     },
     {
-      icon: <WatchTwoToneIcon key={v4()} />,
+      icon: <BsSmartwatch key={v4()} />,
       category: "watch",
     },
     {
-      icon: <CakeIcon key={v4()} />,
+      icon: <GiWrappedSweet key={v4()} />,
       category: "sweet",
     },
     {
-      icon: <SportsEsportsRoundedIcon key={v4()} />,
+      icon: <IoGameController key={v4()} />,
       category: "game",
     },
   ];
-  
+
 
   return (
     <div className="w-full overflow-x-hidden">
@@ -119,7 +158,7 @@ export default async function Page() {
       <div className="w-full flex justify-center items-center flex-wrap">
           {componets.map((item) => {
             return (
-              <Link href={`/category/${item.category}`}>
+              <Link key={item.category} href={`/category/${item.category}`}>
                 <button className="text-3xl border shadow-md p-5 rounded-xl hover:scale-90 transition-transform m-3">
                   {item.icon}
                 </button>

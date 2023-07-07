@@ -1,6 +1,6 @@
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import '/Users/himakarananthasetty/amazonclone-himakar/app/globals.css'
+import '/app/globals.css'
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

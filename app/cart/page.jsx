@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation'
 import { auth, db } from "../../public/firebase";
 import { collection, orderBy, query, where } from "firebase/firestore";
 import { useCollection, useCollectionData } from "react-firebase-hooks/firestore";
-import CartCard from "/Users/himakarananthasetty/amazonclone-himakar/app/components/CartCard.jsx";
+// import CartCard from "/Users/himakarananthasetty/amazonclone-himakar/app/components/CartCard.jsx";
+import CartCard from "../components/CartCard";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";

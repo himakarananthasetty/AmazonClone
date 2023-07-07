@@ -1,7 +1,7 @@
 'use client';
 import React from "react";
 import {addDoc, collection, serverTimestamp} from "firebase/firestore"
-import { auth, db } from "/Users/himakarananthasetty/amazonclone-himakar/public/firebase";
+import { auth, db } from "../../public/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const Buttons = ({data}) => {

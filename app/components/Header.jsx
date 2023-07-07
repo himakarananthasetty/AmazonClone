@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import React , { useState }  from "react";
-import Logo from "/Users/himakarananthasetty/amazonclone-himakar/public/images/logo.png";
-import DefaultImage from "/Users/himakarananthasetty/amazonclone-himakar/public/images/default.png";
+import Logo from "../../public/images/logo.png";
+import DefaultImage from "../../public/images/default.png";
 import Link from "next/link";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";

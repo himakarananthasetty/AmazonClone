@@ -152,9 +152,10 @@ export default async function Page() {
                 </button>
               </Link>
             );
-          })}
+          })} Changed page
         </div>
       </div> */}
+      
       <div className="w-full flex justify-center items-center flex-wrap">
           {componets.map((item) => {
             return (

@@ -1,0 +1,110 @@
+'use client';
+import React from 'react'
+import Slider from "react-slick";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import { Card } from '@mui/material';
+import { v4 } from 'uuid';
+
+function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <span
+        onClick={onClick}
+        className="slick-arrow  p-0 top[30%] -right-12 cursor-pointer md:text-xl"
+        style={{ ...style, display: "block", color: "black" }}
+      >
+        <ChevronLeftRoundedIcon />
+      </span>
+    );
+  }
+  
+  function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <span
+        onClick={onClick}
+        className="slick-arrow absolute  p-0 top-[180%] w-[500px] h-[600px] z-[999] -left-30 cursor-pointer md:text-xl"
+        style={{ ...style, display: "block", color: "black" }}
+      >
+        <ChevronRightRoundedIcon />
+      </span>
+    );
+  }
+  
+
+const Carasole1old = ({products}) => {
+    console.log(products);
+    if(!products)
+    {
+        return null;
+    }
+    const settings = {
+        dots: false,
+        infinite: false,
+        speed: 200,
+        autoplay: true,
+        autoplaySpeed: 3500,
+        cssEase: "linear",
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        initialSlide: 0,
+        pauseOnHover: true,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+        responsive: [
+          {
+            breakpoint: 1700,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: true,
+            },
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              initialSlide: 1,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      };
+  return (
+    <div>
+        <Slider {...settings}>
+
+        {products.map((item) => {
+          return <Card key= {item.id} />;
+        })}
+
+        </Slider>
+    </div>
+  );
+};
+
+export default Carasole1old
+
+{/* <Slider {...settings}>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+
+</Slider> */}

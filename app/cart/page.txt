@@ -1,0 +1,152 @@
+"use client";
+import React from "react";
+import Image from "next/image";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import { auth, db } from "../../public/firebase";
+import { collection, orderBy, query, where } from "firebase/firestore";
+import { useCollection, useCollectionData } from "react-firebase-hooks/firestore";
+import CartCard from "/Users/himakarananthasetty/amazonclone-himakar/app/components/CartCard.jsx";
+import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
+import { data } from "autoprefixer";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+const Page = () => {
+  const [user, loading] = useAuthState(auth);
+
+  const cartRef = collection(db, "cart");
+  const qu = query(cartRef, orderBy("createdAt"));
+  const [cartSnapshots, loading2] = useCollection(qu);
+  const [cartSnapshotsData] = useCollectionData(qu);
+
+  let total = [];
+  // for (
+  //   let i = 0;
+  //   i <
+  //   cartSnapshots?.docs?.filter((data) => data?.data()?.uid === user?.uid)
+  //     .length;
+  //   i++
+  // ) {
+  //   const price =     cartSnapshots?.docs?.filter((data) => data?.data()?.uid === user?.uid)?.[i].data()?.price;
+  //   total.push(price)
+  // }
+  const cart = cartSnapshotsData;
+
+  cartSnapshots?.docs?.filter(
+    (data) => data?.data()?.uid === user?.uid
+  )?.forEach((item) => {
+    const price = item.data()?.price;
+    total.push(price);
+  });
+
+  let sum = 0;
+
+  for (let i = 0; i < total.length; i++) {
+    sum = sum + total[i];
+  }
+
+  // const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_PUBLISHABLE_KEY}`);
+  // stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_KEY);
+  const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  );
+
+
+  const createCheckout = async () => {
+    const stripe = await stripePromise;
+    const checkout = await axios.post("/api/checkout", {
+      uid: user?.uid,
+      cart: cart,
+    });
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkout.data.id,
+    });
+    if (result.error) {
+      console.log(error);
+    }
+  };
+  
+  return (
+    <div className="w-full h-[80vh] border shadow-md rounded-xl p-5 bg-white">
+      <div className="flex w-full justify-between items-center">
+        <div className="flex items-center">
+          <h1 className="text-4xl font-bold">Your Shopping Cart</h1>
+          <Image
+            src={"/gifs/cart.gif"}
+            width={80}
+            height={80}
+            priority={true}
+            className="relative bottom-1"
+          />
+        </div>
+        <div>
+          <p className="text-gray-500 text-xl font-light tracking-wider">
+            {" "}
+            {
+              cartSnapshots?.docs?.filter(
+                (data) => data?.data()?.uid === user?.uid
+              )?.length
+            }{" "}
+            items for &#8377; {sum}
+          </p>
+        </div>
+      </div>
+      <div className="w-full h-[63vh] overflow-y-auto ">
+        {!loading2 ? (
+          user ? (
+            cartSnapshots?.docs?.filter(
+              (data) => data?.data()?.uid === user?.uid
+            )?.length ? (
+              cartSnapshots?.docs
+                ?.filter((data) => data?.data()?.uid === user?.uid)
+                ?.map((item) => {
+                  return (
+                    <CartCard
+                      key={item?.id}
+                      images={item?.data()?.image}
+                      name={item?.data()?.name}
+                      price={item?.data()?.price}
+                      description={item?.data()?.description}
+                      id={item?.id}
+                    />
+                  );
+                })
+            ) : (
+              <div className="w-full h-[63vh] flex justify-center items-center ">
+                <Image
+                  src={"/gifs/emptycart.gif"}
+                  alt=""
+                  width={500}
+                  height={500}
+                  priority={true}
+                />
+              </div>
+            )
+          ) : (
+            <div className="w-full h-[63vh] flex justify-center items-center ">
+              <Image
+                src={"/gifs/emptycart.gif"}
+                alt=""
+                width={500}
+                height={500}
+                priority={true}
+              />
+            </div>
+          )
+        ) : (
+          <div className="w-full h-[63vh] flex justify-center items-center">
+            <RefreshOutlinedIcon className="text-6xl text-[#ff9900] animate-spin inline" />
+          </div>
+        )}
+      </div>
+      <div>
+        <button className="w-full bg-gradient-to-b from-[#ffd990] to-[#ffb300] rounded-xl p-2 text-xl font-semibold hover:from-[#ffb300] to hover:to-[#ffd990]"
+        onClick={createCheckout}>
+          Proceed to pay
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Page;

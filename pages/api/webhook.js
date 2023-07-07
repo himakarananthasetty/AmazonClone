@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import { db } from "/Users/himakarananthasetty/amazonclone-himakar/public/firebase.js";
+import { db } from "../../public/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const stripe = new Stripe(process.env.stripe_secret);

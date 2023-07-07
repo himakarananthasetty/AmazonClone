@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "/Users/himakarananthasetty/amazonclone-himakar/public/firebase";
+import { db } from "../../public/firebase";
 
 import { async } from '@firebase/util';
 

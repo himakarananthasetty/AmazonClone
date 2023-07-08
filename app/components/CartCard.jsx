@@ -19,7 +19,7 @@ const CartCards = ({ name,image, description, price, key, id}) => {
         </div>
         <div className='space-y-2'>
             <h2 className='text-xl font-bold'>Name:{name}</h2>
-            <h2 className='text-sm'>Description:{description.slice(0,220)}...</h2>
+            <h2 className='text-sm'>Description:{description.slice(0,200)}...</h2>
             <h2 className='text-xl font-semibold'>Price:{price}&#8377;</h2>
 
         </div>

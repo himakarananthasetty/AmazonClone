@@ -128,13 +128,13 @@ const Page = () => {
         {user &&
         cartSnapshots?.docs?.filter((data) => data?.data()?.uid === user?.uid)
           ?.length ? (
-            <button
+            <button  priority={true}
             className="w-full bg-gradient-to-b from-[#ffd900] to-[#ffb300] rounded-xl p-2 text-xl font-semibold hover:from-[#ffb300] hover:to-[#ffd900]"
             onClick={() =>
               router.push("/success") // Update the path to your desired success page
             }
           >
-            Proceed To Pay       priority={true}
+            Proceed To Pay      
 
           </button>
       //   <button
@@ -145,11 +145,11 @@ const Page = () => {
       // </button>
 
         ) : (
-          <button
+          <button priority={true}
             className="w-full bg-gradient-to-b from-[#8a8a8a] to-[#404040] rounded-xl p-2 text-xl font-semibold text-white" 
             onClick={()=>{alert("Please Add Some Items To Your Cart!")}}
           >
-            Proceed To Pay      priority={true}
+            Proceed To Pay      
 
           </button>
         )}

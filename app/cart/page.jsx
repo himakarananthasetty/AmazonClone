@@ -91,7 +91,7 @@ const Page = () => {
                       image={item?.data()?.image}
                       name={item?.data()?.name}
                       price={item?.data()?.price}
-                      description={item?.data()?.description}
+                      description={item?.data()?.description.slice(0,150)}
                       id={item?.id}
                     />
                   );
@@ -134,7 +134,8 @@ const Page = () => {
               router.push("/success") // Update the path to your desired success page
             }
           >
-            Proceed To Pay
+            Proceed To Pay       priority={true}
+
           </button>
       //   <button
       //   className="w-full bg-gradient-to-b from-[#ffd900] to-[#ffb300] rounded-xl p-2 text-xl font-semibold hover:from-[#ffb300] hover:to-[#ffd900]"
@@ -148,7 +149,8 @@ const Page = () => {
             className="w-full bg-gradient-to-b from-[#8a8a8a] to-[#404040] rounded-xl p-2 text-xl font-semibold text-white" 
             onClick={()=>{alert("Please Add Some Items To Your Cart!")}}
           >
-            Proceed To Pay
+            Proceed To Pay      priority={true}
+
           </button>
         )}
       </div>

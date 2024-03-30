@@ -3,12 +3,7 @@ import Image from "next/image";
 import { BsLaptopFill, BsSmartwatch } from "react-icons/bs";
 import { GiSofa, GiWrappedSweet } from "react-icons/gi";
 import { AiOutlineMobile } from "react-icons/ai";
-import {
-  FaTshirt,
-  FaBicycle,
-  FaHeadphonesAlt,
-
-} from "react-icons/fa";
+import { FaTshirt, FaBicycle, FaHeadphonesAlt } from "react-icons/fa";
 import { IoGameController } from "react-icons/io5";
 import { v4 } from "uuid";
 import Link from "next/link";
@@ -23,12 +18,13 @@ import Link from "next/link";
 // import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
 import Carasole from "./components/Carasole";
 
-
-
-const getProducts = async() => {
-  const products = await fetch('https://www.screentechnicals.com/api/ecommerce/products', { next: { revalidate: 10 } });
+const getProducts = async () => {
+  const products = await fetch(
+    "https://screentechnicals-com.vercel.app/api/ecommerce/products",
+    { next: { revalidate: 10 } }
+  );
   return products.json();
-}
+};
 
 export default async function Page() {
   const products = await getProducts();
@@ -71,7 +67,7 @@ export default async function Page() {
   //   },
   // ];
 
-    let componets = [
+  let componets = [
     {
       icon: <BsLaptopFill key={v4()} />,
       category: "laptop",
@@ -110,7 +106,6 @@ export default async function Page() {
     },
   ];
 
-
   return (
     <div className="w-full overflow-x-hidden">
       <div className="w-full lg:h-[40vh] magic-gradient rounded-xl shadow-md flex justify-between items-center overflow-hidden">
@@ -124,9 +119,9 @@ export default async function Page() {
           </p>
           <div>
             <Link href={"/products"}>
-            <button className="px-4 py-2 text-lg bg-white text-black rounded-md capitalize">
-              browse products
-            </button>
+              <button className="px-4 py-2 text-lg bg-white text-black rounded-md capitalize">
+                browse products
+              </button>
             </Link>
           </div>
         </div>
@@ -155,8 +150,8 @@ export default async function Page() {
           })} Changed page
         </div>
       </div> */}
-      
-      <div className="w-full flex justify-center items-center flex-wrap">
+
+        <div className="w-full flex justify-center items-center flex-wrap">
           {componets.map((item) => {
             return (
               <Link key={item.category} href={`/category/${item.category}`}>
@@ -169,7 +164,9 @@ export default async function Page() {
         </div>
       </div>
       <div>
-        <h1 className="text-center font-bold text-3xl pt-10 pb-5">Hot Deals 🔥</h1>
+        <h1 className="text-center font-bold text-3xl pt-10 pb-5">
+          Hot Deals 🔥
+        </h1>
         <div className="w-full px-10">
           <Carasole products={products} />
         </div>

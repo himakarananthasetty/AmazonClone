@@ -5,7 +5,7 @@ import Buttons from "../../components/Buttons";
 
 const getProduct = async (id) => {
   const products = await fetch(
-    `https://www.screentechnicals.com/api/ecommerce/products/${id}`,
+    `https://screentechnicals-com.vercel.app/api/ecommerce/products/${id}`,
     { next: { revalidate: 10 } }
   );
   return products.json();
@@ -32,13 +32,15 @@ const Page = async ({ params }) => {
           {data?.[0]?.brand}
         </h2>
         <h2 className="text-2xl font-bold">{data?.[0]?.name}</h2>
-        <h2 className="text-xl font-semibold">Price: {data?.[0]?.price}&#8377;</h2>
-        <h2 className="text-sm w-full tracking-wide">Description:{data?.[0]?.description.slice(0,200)}...</h2>
+        <h2 className="text-xl font-semibold">
+          Price: {data?.[0]?.price}&#8377;
+        </h2>
+        <h2 className="text-sm w-full tracking-wide">
+          Description:{data?.[0]?.description.slice(0, 200)}...
+        </h2>
         <Buttons data={data} />
-
       </div>
-      <div className="items-center">
-      </div>
+      <div className="items-center"></div>
     </div>
   );
 };
